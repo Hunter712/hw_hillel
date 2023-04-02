@@ -14,5 +14,5 @@ for i in range(len(cats)):          # 5 way to output list elements
     output_str += cats[i]
     if i != len(cats) - 1:  # created if condition, to avoid extra ", " at the end of the string
         output_str += ", "
-print(output_str, sep=", ")
+print(output_str)
 
