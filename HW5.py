@@ -1,11 +1,13 @@
-list_of_numbers = [int(input("Enter first number:")), int(input("Enter second number:")),
-                   int(input("Enter third number:"))]
+number1 = int(input("Enter first number:"))
+number2 = int(input("Enter second number:"))
+number3 = int(input("Enter third number:"))
 
-max_number = 0
-for i in list_of_numbers:               # беру по очереди каждый элемент списка
-    for j in list_of_numbers:
-        if i > j and i > max_number:    # сравниваю i со всеми остальными элементами списка,
-            max_number = i              # если i больше всех остальных элементов и больше предыдущего
-                                        # записанного в max_number то присваиваю значение и вывожу
+if number1 > number2 and number1 > number3:
+    print(number1)
+elif number2 > number1 and number2 > number3:
+    print(number2)
+elif number3 > number1 and number3 > number2:
+    print(number3)
+else:
+    print("Enter valid number")
 
-print(max_number)
