@@ -1,3 +1,4 @@
+#1 variant
 try:
     number1 = int(input("Enter first number:"))
     number2 = int(input("Enter second number:"))
@@ -14,3 +15,15 @@ try:
 
 except ValueError:
     print("You can enter only numbers")
+
+
+#2 variant without 1 for loop
+list_of_numbers = [int(input("Enter first number:")), int(input("Enter second number:")),
+                   int(input("Enter third number:"))]
+
+max_number = 0
+for i in list_of_numbers:
+    if i > max_number:
+        max_number = i
+
+print(max_number)
