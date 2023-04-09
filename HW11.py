@@ -1,20 +1,20 @@
-s = "Hello all. Here's pretty cold and hot. Choose yourself. asd asd asd."
+s = """Hello all.Here's pretty cold and hot. Choose yourself."""
 
-list_s = s.split()          #формируем список из строки
+list_s = s.split(".")  #формируем список разделяя по точке
+del list_s[len(list_s) - 1]   #удаляем последний элемент списка, тк формируется пустой элемент в списке из за разделения по точке
+
+list_s1 = []
 indices_list = []
 words_number_list = []
 
-for index, value in enumerate(list_s):      #идем по списку, проверяем есть ли в слове точка, фиксируем индекс слова в списке и добавляем в новый список
-    if "." in value:
-        indices_list.append(index)
+for value in list_s:  #пробегаемся по разделенному списку и разделяем еще раз по пробелу, формируя список двойной вложенности
+    list_s1.append(value.split())
+
 
 count_words = 0
-for index, value in enumerate(list_s):     #пробегаемся по оригинальной строке
-    if index in indices_list:              #проверяем совпадает ли индекс оригинальной строки с индексом с точкой
-        count_words += 1                   #увеличиваю еще раз на 1 что бы счетчик учитывал слово с точкой
-        words_number_list.append(count_words)   #добавляем подсчитанное количество слов в предложении в новый список
-        count_words = 0                     #обнуляем счетчик что бы переиспользовать для подсчета остальных слов в предложении
-    else:
-        count_words += 1                   #увеличиваем счетчик на 1 если мы еще не дошли до индекса с точкой
+for i in list_s1:
+    for j in i:     #пробегаемся по листу и увеличиваем счетчик на 1, подсчитывая каждое слово в предложении
+        count_words += 1
+    words_number_list.append(count_words)   # добавляем подсчитанное количество слов в предложении в новый список
+    count_words = 0
 print(words_number_list)
-
