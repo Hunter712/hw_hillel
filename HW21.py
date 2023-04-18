@@ -33,9 +33,9 @@ with open("users_out.json", "w") as file:
 output_str = ""
 for sub_dict in list_with_all_data:
     if sub_dict['age'] is None:
-        output_str += f"{sub_dict['name']};{''}; {','.join(sub_dict['phones'])}\n"
+        output_str += f"{sub_dict['name']};{''};{','.join(sub_dict['phones'])}\n"
     else:
-        output_str += f"{sub_dict['name']}; {sub_dict['age']}; {','.join(sub_dict['phones'])}\n"
+        output_str += f"{sub_dict['name']};{sub_dict['age']};{','.join(sub_dict['phones'])}\n"
 
 with open("users_out.txt", "w") as file:
     file.write(output_str)
