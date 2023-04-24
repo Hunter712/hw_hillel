@@ -4,19 +4,11 @@ def to_dict(lst):
     if len(lst) % 2 != 0:       #проверяю на четность элементов в листе
         return "wrong list"
 
-    #в условии задачи не сказано можем менять входной список или нет,
-    # если можем то можно отсортировать и скомпоновать в словарь все эелементы,
-    # если менять порядок списка нельзя то эту сортировку можно убрать,
-    # тогда в словарь будут попадать только элементы где первым идет не четное и за ним сразу следует четное
-    lst.sort()
-
-    # пробегаюсь по отсортированному списку, определяю не четные числа в качестве ключей и формирую новый словарь
+    check_for_odd_index = 1
     for i in range(len(lst)):
-        try:
-            if lst[i] % 2 != 0 and lst[i + 1] % 2 == 0:
-                new_dict[lst[i]] = lst[i + 1]
-        except IndexError:
-            print("IndexError when we have few odd elements at the end of the list")
+        if check_for_odd_index % 2 != 0:
+            new_dict[lst[i]] = lst[i + 1]
+        check_for_odd_index += 1
     return new_dict
 
 
