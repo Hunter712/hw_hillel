@@ -17,9 +17,7 @@ def call_counter(file_name):
                 for line in range(len(file_list)):  # прохожу по каждой строке файла
                     if function.__name__ in file_list[line]:  # проверяю есть ли в строке текущая функция
                         file_str = file_list[line].split(" ")  # формирую новый лист из строки, нахожу число,
-                        for i in range(len(file_str)):  # перезаписываю на одно больше и кладу обратно в файл
-                            if file_str[i].isdigit():
-                                file_str[i] = str(int(file_str[i]) + 1)
+                        file_str[4] = str(int(file_str[4]) + 1)  # перезаписываю на одно больше и кладу обратно в файл
                         file_list[line] = ' '.join(file_str)
 
                 if data_from_file.count(function.__name__) == 0:
