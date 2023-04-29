@@ -10,9 +10,10 @@ def call_counter(file_name):
 
     def inner(function):
         def wrapper(*args, **kwargs):
-            if read_number():  # проверяю на пустой файл
-                file_list = read_number().split("\n")
-                find_unwritten_function = 0
+            data_from_file = read_number()
+            if data_from_file:  # проверяю на пустой файл
+                file_list = data_from_file.split("\n")
+
                 for line in range(len(file_list)):  # прохожу по каждой строке файла
                     if function.__name__ in file_list[line]:  # проверяю есть ли в строке текущая функция
                         file_str = file_list[line].split(" ")  # формирую новый лист из строки, нахожу число,
@@ -21,7 +22,7 @@ def call_counter(file_name):
                                 file_str[i] = str(int(file_str[i]) + 1)
                         file_list[line] = ' '.join(file_str)
 
-                if read_number().count(function.__name__) == 0:
+                if data_from_file.count(function.__name__) == 0:
                     file_list.append(
                         f"Function {function.__name__} was called 1 times")  # если функция ранее не записывалась в файл то записываю ее
                 write_number('\n'.join(file_list))
