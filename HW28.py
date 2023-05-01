@@ -1,7 +1,7 @@
 import re
 
 split_sentences_pattern = r"([A-Z].*?\!)|([A-Z].*?\?)|([A-Z].*?\.)"  # разбил текст по строкам где строка начинается с большой буквы, заканчивается знаком . ? !
-receive_first_word_in_sentence_pattern = r"^[A-Z]\w+"
+receive_first_word_in_sentence_pattern = r"^[A-Z]\w+"  # вытаскиваю первое слово в предложении
 
 txt = """Happy New Year! Wish you good luck.
 Please write me how are you doing? Goodbye...
