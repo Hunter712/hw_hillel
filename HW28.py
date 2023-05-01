@@ -19,4 +19,6 @@ for in_list in splitted_sentences:
             else:
                 result_string += first_word_in_sentence[0].lower() + " "
 
+result_string = result_string[:-1] + "."
+
 print(result_string)
