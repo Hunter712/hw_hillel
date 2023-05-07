@@ -12,7 +12,7 @@ class Animal:
         self.is_pet = is_pet
         self.good_month_analyses = good_month_analyses
 
-    def calculate_animal_age_predict(self):
+    def animal_age_predict(self):
         """ Предуагадываю сколько теоретически осталось жить животному"""
 
         if self.breed_of_animal in self.animals:
@@ -33,19 +33,19 @@ class Animal:
             return random.randint(1, 12)
 
 
-class FindPerfectCouple:
+class IsCouple:
     best_shops = {"petslike": 2, "pethouse": 1, "petchoice": 5, "shinshilka": 1}
 
     def __init__(self, animal1, animal2):
         self.animal1 = animal1
         self.animal2 = animal2
 
-    def find_couple(self):
-        """Ищу пару для животного в зависимости от того совпадают у них месяцы или нет"""
+    def compare_couple(self):
+        """Сравниваю животных в зависимости от того совпадают у них месяцы или нет"""
         if self.animal1.calculate_best_month_to_meet_couple() == self.animal2.calculate_best_month_to_meet_couple():
-            return f"{self.animal1.name} and {self.animal2.name} is perfect couple"
+            return True
         else:
-            return "Bad couple"
+            return False
 
     def best_shop_for_animal(self):
         """Предискиваю лучший зоо магазин"""
@@ -60,5 +60,8 @@ class FindPerfectCouple:
 my_animal1 = Animal("Lui", 3, "Cat", True)
 my_animal2 = Animal("Kristina", 5, "Cat", True)
 
-find_couple = FindPerfectCouple(my_animal1, my_animal2)
-print(find_couple.best_shop_for_animal())
+couple = IsCouple(my_animal1, my_animal2)
+if couple.compare_couple():
+    print(f"{my_animal1.name} and {my_animal2.name} is perfect couple")
+else:
+    print(f"They are bad couple")
