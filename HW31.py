@@ -8,7 +8,9 @@ def get_random_string(string_length):
     result_string = ""
     for i in range(string_length):
         result_string += chr(random.randint(48, 57)) + chr(random.randint(65, 90)) + chr(random.randint(97, 122))
-    return result_string[:string_length]
+    result_list = list(result_string[:string_length])
+    random.shuffle(result_list)
+    return "".join(result_list)
 
 
 print(get_random_string(5))
