@@ -1,6 +1,14 @@
 def custom_zip(*sequences, full=False, default=None):
-    new_sequence = []
+    def create_resulted_tuple(new_sequence, length_list):
+        result_list = []
+        for max_list_indexes in range(length_list):
+            get_elem_from_lists_by_index = []
+            for lists in new_sequence:
+                get_elem_from_lists_by_index.append(lists[max_list_indexes])
+            result_list.append(tuple(get_elem_from_lists_by_index))
+        return result_list
 
+    new_sequence = []
     for i in sequences:  # формирую новый список списков
         new_sequence.append(i.copy())
 
@@ -25,15 +33,6 @@ def custom_zip(*sequences, full=False, default=None):
         # прохожу по всем спискам, вытаскиваю елементы по соответствующему индексу и формирую новый tuple
         return create_resulted_tuple(new_sequence, min_length_list)
 
-
-def create_resulted_tuple(new_sequence, length_list):
-    result_list = []
-    for max_list_indexes in range(length_list):
-        get_elem_from_lists_by_index = []
-        for lists in new_sequence:
-            get_elem_from_lists_by_index.append(lists[max_list_indexes])
-        result_list.append(tuple(get_elem_from_lists_by_index))
-    return result_list
 
 seq1 = [1, 2, 3, 4, 5]
 seq2 = [9, 8, 7]
