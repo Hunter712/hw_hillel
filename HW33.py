@@ -1,8 +1,8 @@
-def custom_zip(*sequences, full=True, default=None):
+def custom_zip(*sequences, full=False, default=None):
     new_sequence = []
-    result_list = []
+
     for i in sequences:  # формирую новый список списков
-        new_sequence.append(i)
+        new_sequence.append(i.copy())
 
     # проверяю по длинной или короткой последовательностям нужно склеить
     if full:
@@ -17,29 +17,26 @@ def custom_zip(*sequences, full=True, default=None):
                     list_from_sequence.append(default)
 
         # прохожу по всем спискам, вытаскиваю елементы по соответствующему индексу и формирую новый tuple
-        for max_list_indexes in range(max_length_list):
-            get_elem_from_lists_by_index = []
-            for lists in new_sequence:
-                get_elem_from_lists_by_index.append(lists[max_list_indexes])
-            result_list.append(tuple(get_elem_from_lists_by_index))
-        return result_list
+        return create_resulted_tuple(new_sequence, max_length_list)
     else:
         # нахожу список с найменьшим количеством элементов
         min_length_list = min(len(x) for x in new_sequence)
 
         # прохожу по всем спискам, вытаскиваю елементы по соответствующему индексу и формирую новый tuple
-        for min_list in range(min_length_list):
-            get_elem_from_lists_by_index = []
-            for lst in new_sequence:
-                get_elem_from_lists_by_index.append(
-                    lst[min_list])
-            result_list.append(
-                tuple(get_elem_from_lists_by_index))
-        return result_list
+        return create_resulted_tuple(new_sequence, min_length_list)
 
+
+def create_resulted_tuple(new_sequence, length_list):
+    result_list = []
+    for max_list_indexes in range(length_list):
+        get_elem_from_lists_by_index = []
+        for lists in new_sequence:
+            get_elem_from_lists_by_index.append(lists[max_list_indexes])
+        result_list.append(tuple(get_elem_from_lists_by_index))
+    return result_list
 
 seq1 = [1, 2, 3, 4, 5]
 seq2 = [9, 8, 7]
-seq3 = [1, 3, 4, 5]
 
-print(custom_zip(seq1, seq2, seq3, full=True, default="Q"))
+print(custom_zip(seq1, seq2, full=True, default="a"))
+print(custom_zip(seq1, seq2, full=False, default="a"))
