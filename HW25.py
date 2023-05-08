@@ -1,21 +1,24 @@
-from pathlib import Path
+import os
 
-filePath = Path("data.txt")
-filePath.touch(exist_ok=True)
+
+def read_from_file(file_name):
+    with open(file_name, "r") as file:
+        file_str = file.read()
+    return file_str
+
+
+def write_in_file(file_name, file_str):
+    with open(file_name, "w") as file:
+        file.write(file_str)
 
 
 def call_counter(file_name):
-    def read_from_file():
-        with open(file_name, "r") as file:
-            file_str = file.read()
-        return file_str
-
-    def write_in_file(file_str):
-        with open(file_name, "w") as file:
-            file.write(file_str)
 
     def string_parser(function):
-        data_from_file = read_from_file()
+        if os.path.isfile(file_name):
+            data_from_file = read_from_file(file_name)
+        else:
+            data_from_file = ''
         if data_from_file:  # проверяю на пустой файл
             file_list = data_from_file.split("\n")
 
@@ -28,9 +31,9 @@ def call_counter(file_name):
             if data_from_file.count(function.__name__) == 0:
                 file_list.append(
                     f"Function {function.__name__} was called 1 times")  # если функция ранее не записывалась в файл то записываю ее
-            write_in_file('\n'.join(file_list))
+            write_in_file(file_name, '\n'.join(file_list))
         else:  # если файл пустой записываю функцию
-            write_in_file(f"Function {function.__name__} was called 1 times")
+            write_in_file(file_name, f"Function {function.__name__} was called 1 times")
 
     def inner(function):
         def wrapper(*args, **kwargs):
@@ -40,6 +43,9 @@ def call_counter(file_name):
         return wrapper
 
     return inner
+
+
+filePath = "data.txt"
 
 
 @call_counter(filePath)
