@@ -1,5 +1,10 @@
 from abc import ABC, abstractmethod
 import my_DB
+from pathlib import Path
+
+PATH = "data.txt"
+filePath = Path(PATH)
+filePath.touch(exist_ok=True)
 
 
 class Client(ABC):
@@ -31,6 +36,7 @@ class Service(ABC):
 
 
 class User(Client):
+
     def __init__(self, order_id, name, address, order, payment_type, status):
         self.order_id = order_id
         self.name = name
@@ -38,7 +44,7 @@ class User(Client):
         self.order = order
         self.payment_type = payment_type
         self.status = status
-        self.data = my_DB.DB()
+        self.data = my_DB.DB(filePath)
 
     # клиент делает заказ
     def make_order(self):
@@ -50,8 +56,9 @@ class User(Client):
 
 
 class Kitchen(Service):
+
     def __init__(self):
-        self.data = my_DB.DB()
+        self.data = my_DB.DB(filePath)
 
     # сотрудники кухни получают все новые заказы
     def receive_new_orders(self):
