@@ -1,18 +1,25 @@
 def cash(function):
-    def wrapper(*args, **kwargs):
-        new_calculation = function(*args, **kwargs)
-        if wrapper.result is None:
-            # записываю первый результат выполнения функции
-            wrapper.result = new_calculation
+    def wrapper(a, b):
+        if wrapper.arg_1 is None and wrapper.arg_2 is None:
+            # сохраняем аргументы первого выполнения функции
+            # и результат выполнения функции
+            wrapper.arg_1 = a
+            wrapper.arg_2 = b
+
+            wrapper.result = function(a, b)
             return wrapper.result
-        elif wrapper.result == new_calculation:
-            # если первый записанный результат совпадает с новым то вывожу самый первый результат
+        elif wrapper.arg_1 == a and wrapper.arg_2 == b:
+            # если аргументы совпадают то возвращаю сохраненный результат
+            return wrapper.result
+        elif wrapper.arg_1 == b and wrapper.arg_2 == a:
+            # если аргументы совпадают то возвращаю сохраненный результат
             return wrapper.result
         else:
-            # если первый записанный результат не совпадает с новым,
-            # то просто вывожу новый результат выполения функции
-            return new_calculation
+            # если аргументы НЕ совпадают то вычисляю функцию
+            return function(a, b)
 
+    wrapper.arg_1 = None
+    wrapper.arg_2 = None
     wrapper.result = None
     return wrapper
 
@@ -25,4 +32,5 @@ def sum_numbers(a, b):
 print(sum_numbers(2, 3))
 print(sum_numbers(1, 3))
 print(sum_numbers(2, 3))
+print(sum_numbers(3, 2))
 print(sum_numbers(22, 3))
