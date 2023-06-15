@@ -38,9 +38,9 @@ class Pixel:
     def __pixel_multiplication(self, multiplicator):
         Pixel._check_if_value_is_int_or_float(multiplicator)
         Pixel._check_if_value_greater_than_zero(multiplicator)
-        new_r = Pixel._convert_to_byte(self.__r * multiplicator.r)
-        new_g = Pixel._convert_to_byte(self.__g * multiplicator.g)
-        new_b = Pixel._convert_to_byte(self.__b * multiplicator.b)
+        new_r = Pixel._convert_to_byte(self.__r * multiplicator)
+        new_g = Pixel._convert_to_byte(self.__g * multiplicator)
+        new_b = Pixel._convert_to_byte(self.__b * multiplicator)
         return Pixel(new_r, new_g, new_b)
 
     def __mul__(self, multiplicator):
@@ -52,9 +52,9 @@ class Pixel:
     def __truediv__(self, multiplicator):
         Pixel._check_if_value_is_int_or_float(multiplicator)
         Pixel._check_if_value_greater_than_zero(multiplicator)  # добавил что бы избежать ексепшина ZeroDivisionError
-        new_r = Pixel._convert_to_byte(int(self.__r / multiplicator.r))  # переделал, int делился на обьект
-        new_g = Pixel._convert_to_byte(int(self.__g / multiplicator.g))
-        new_b = Pixel._convert_to_byte(int(self.__b / multiplicator.b))
+        new_r = Pixel._convert_to_byte(int(self.__r / multiplicator))
+        new_g = Pixel._convert_to_byte(int(self.__g / multiplicator))
+        new_b = Pixel._convert_to_byte(int(self.__b / multiplicator))
         return Pixel(new_r, new_g, new_b)
 
     def __eq__(self, other: Pixel):
@@ -72,12 +72,12 @@ class Pixel:
 
     @staticmethod
     def _check_if_value_is_int_or_float(n):  #переделал условия тк сравнивался обьект вместо чисел
-        if not isinstance(n.r, (int, float)) and not isinstance(n.g, (int, float)) and not isinstance(n.b, (int, float)):
+        if not isinstance(n, (int, float)):
             raise TypeError("Pixel could be multiplied only by int or float")
 
     @staticmethod
     def _check_if_value_greater_than_zero(n):  #переделал условия тк сравнивался обьект вместо чисел
-        if n.r <= 0 or n.g <= 0 or n.b <= 0:
+        if n <= 0:
             raise ValueError("Multiplicator should be greater than 0")
 
     @staticmethod
