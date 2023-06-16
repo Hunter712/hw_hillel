@@ -68,7 +68,7 @@ class Pixel:
 
     def get_pixel_near(self, area):
         neighbourhood = -area + 2 * area * random.random()
-        return Pixel(self.r + neighbourhood, self.b + neighbourhood, self.g + neighbourhood)
+        return Pixel(Pixel._convert_to_byte(int(self.r + neighbourhood)), Pixel._convert_to_byte(int(self.g + neighbourhood)), Pixel._convert_to_byte(int(self.b + neighbourhood)))
 
     @staticmethod
     def _check_if_value_is_int_or_float(n):  #переделал условия тк сравнивался обьект вместо чисел
