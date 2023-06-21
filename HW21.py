@@ -1,6 +1,6 @@
 import json
 
-with open("users.txt", "r") as file:
+with super.open("users.txt", "r") as file:
     string_with_data_in_file = file.read()
 
 list_with_data_in_file = string_with_data_in_file.split("\n")  # разбил каждую новую строку файла по элементам списка

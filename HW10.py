@@ -1,4 +1,4 @@
-palindrome = str(input("Enter palindrome:"))
+palindrome = input("Enter palindrome:")
 
 palindrome = palindrome.lower()
 palindrome = palindrome.strip()
